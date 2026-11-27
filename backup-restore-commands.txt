@@ -1,0 +1,10 @@
+// Task 6: Backup and Restore
+// 1. Back up company_advanced to company_advanced.archive using gzip.
+mongodump --db company_advanced --archive=/tmp/company_advanced.archive --gzip
+
+// 2. Restore it into a new database named company_advanced_restore.
+mongorestore --archive=/tmp/company_advanced.archive --gzip --nsFrom="company_advanced.*" --nsTo="company_advanced_restore.*"
+
+// 3. Verify the restored collection counts.
+use company_advanced_restore;
+db.employees.find().count();
